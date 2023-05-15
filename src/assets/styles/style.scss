@@ -1,0 +1,42 @@
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    html,
+    body {
+        line-height: $line-height;
+        // font-family: $font-family;
+        font-size: $font-size;
+        // color: $color7;
+        width: 100%;
+        height: 100%;
+        overscroll-behavior-y: none;
+        .App {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            min-width: 320px;
+
+            // #Extra small phone
+            @media screen and (max-width: $phones) {
+            }
+
+            //#Phone
+            @media screen and (min-width: $phones) and (max-width: $tablets) {
+            }
+            //#Tablet
+            @media screen and (min-width: $tablets) and (max-width: $laptops) {
+            }
+
+            //#Laptop
+            @media screen and (min-width: $laptops) and (max-width: $desktops) {
+            }
+
+            //#Desktop
+            @media screen and (min-width: $desktops) {
+            }
+        }
+    }
+}
