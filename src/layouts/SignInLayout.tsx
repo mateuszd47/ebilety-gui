@@ -1,6 +1,10 @@
 import { Outlet } from "react-router-dom";
-const SignInLayout: React.FC = () => {
-    return <Outlet />;
+const SignInLayout = () => {
+    return (
+        <div className="layout">
+            <Outlet />
+        </div>
+    );
 };
 
 export default SignInLayout;

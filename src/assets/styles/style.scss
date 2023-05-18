@@ -1,3 +1,4 @@
+//#reset
 *,
 *::after,
 *::before {
@@ -6,37 +7,221 @@
     box-sizing: border-box;
     html,
     body {
-        line-height: $line-height;
-        // font-family: $font-family;
-        font-size: $font-size;
-        // color: $color7;
-        width: 100%;
-        height: 100%;
+        width: 100vw;
+        height: 100vh;
         overscroll-behavior-y: none;
-        .App {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            min-width: 320px;
+        // background-color: $color-primary;
+    }
+}
 
-            // #Extra small phone
-            @media screen and (max-width: $phones) {
-            }
+input {
+    border: 0;
+    outline: none;
+    &:active,
+    &:focus {
+        border: 0;
+        outline: none;
+    }
+}
 
-            //#Phone
-            @media screen and (min-width: $phones) and (max-width: $tablets) {
-            }
-            //#Tablet
-            @media screen and (min-width: $tablets) and (max-width: $laptops) {
-            }
+button {
+    border: 0;
+    outline: none;
+}
 
-            //#Laptop
-            @media screen and (min-width: $laptops) and (max-width: $desktops) {
-            }
+a {
+    text-decoration: none;
+    color: $color7;
+}
 
-            //#Desktop
-            @media screen and (min-width: $desktops) {
+//#App
+.app {
+    line-height: $line-height;
+    font-family: $font-family;
+    font-size: $font-size;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+
+    .layout {
+        width: 100%;
+        max-width: 100%;
+        min-width: 320px;
+        height: 100%;
+        display: grid;
+        // background-color: $color3;
+        // color: $color7;
+        .signPage {
+            height: 100%;
+            grid-column: 1 / -1;
+            display: flex;
+            flex-direction: row;
+            padding: 60px;
+            .signPage__left {
+                width: 50%;
+                height: 100%;
+                background-image: url("../images/joker.jpg");
+                background-size: cover;
+                background-position: center center;
+                border-radius: 20px 0 0 20px;
+                padding: 60px;
             }
+            .signPage__right {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                width: 50%;
+                height: 100%;
+                .right__container {
+                    width: 100%;
+                    min-width: 320px;
+                    max-width: 400px;
+                    height: fit-content;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    justify-content: flex-start;
+                    padding: 0;
+                    .container__header {
+                        width: 100%;
+                        margin: 0 0 20px 0;
+                        h2,
+                        h5 {
+                            width: 100%;
+                        }
+                        .header__button {
+                            background-color: $color1;
+                            // font-weight: 500;
+                            cursor: pointer;
+                        }
+                    }
+
+                    .container__form {
+                        width: 100%;
+                        height: 100%;
+
+                        .form__containerInput {
+                            display: flex;
+                            flex-direction: column;
+
+                            .containerInput__label {
+                                width: 100%;
+                                margin: 2px 0;
+                            }
+                            .containerInput__input {
+                                background-color: $color3;
+                                border-radius: 2px;
+                                // border: 2px solid black;
+                                width: 100%;
+                                height: 40px;
+                                padding: 0 10px;
+                                margin: 0 0 10px 0;
+                                &:focus {
+                                    background-color: $color1;
+                                    border: 2px solid black;
+                                    padding: 0 8px;
+                                }
+                            }
+                        }
+                        .form__button {
+                            margin: 20px 0 0 0;
+                            background-color: $color13;
+                            color: $color3;
+                            width: 100%;
+                            height: 40px;
+                            border-radius: 2px;
+                            cursor: pointer;
+                        }
+                    }
+                }
+            }
+            // background-color: red;
+        }
+    }
+
+    // #Extra small phone
+    @media screen and (max-width: $phones) {
+        .layout {
+            grid-template-columns: repeat(4, 1fr);
+            grid-column-gap: 8px;
+            .signPage {
+                padding: 0;
+                .signPage__left {
+                    display: none;
+                }
+                .signPage__right {
+                    width: 100%;
+                    padding: 10px;
+                    .right__container {
+                        padding: 10px;
+                    }
+                }
+            }
+        }
+    }
+
+    //#Phone
+    @media screen and (min-width: $phones) and (max-width: $tablets) {
+        .layout {
+            grid-template-columns: repeat(4, 1fr);
+            grid-column-gap: 8px;
+            .signPage {
+                padding: 0;
+                .signPage__left {
+                    display: none;
+                }
+                .signPage__right {
+                    width: 100%;
+                    padding: 10px;
+                    .right__container {
+                        padding: 10px;
+                    }
+                }
+            }
+        }
+    }
+    //#Tablet
+    @media screen and (min-width: $tablets) and (max-width: $laptops) {
+        .layout {
+            grid-template-columns: repeat(8, 1fr);
+            grid-column-gap: 16px;
+            .signPage {
+                padding: 10px;
+                .signPage__right {
+                    width: 100%;
+                    padding: 10px;
+                    .right__container {
+                        padding: 10px;
+                    }
+                }
+            }
+        }
+    }
+
+    //#Laptop
+    @media screen and (min-width: $laptops) and (max-width: $desktops) {
+        .layout {
+            grid-template-columns: repeat(12, 1fr);
+            grid-column-gap: 32px;
+            .signPage {
+                padding: 30px;
+            }
+        }
+    }
+
+    //#Desktop
+    @media screen and (min-width: $desktops) {
+        .layout {
+            max-width: 1920px;
+            grid-template-columns: repeat(16, 1fr);
+            grid-column-gap: 32px;
+            max-width: 1920px;
+            // .signPage {
+            // }
         }
     }
 }

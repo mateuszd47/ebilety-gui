@@ -4,6 +4,7 @@ import {
     RouterProvider,
     Route,
 } from "react-router-dom";
+import atob from "atob";
 
 import AppLayout from "./layouts/AppLayout";
 import SignInLayout from "./layouts/SignInLayout";
@@ -12,28 +13,61 @@ import UserLayout from "./layouts/UserLayout";
 import DashboardUser from "./pages/User/DashboardUser";
 import NotFound from "./pages/NotFound";
 import DashboardAdmin from "./pages/Admin/DashboardAdmin";
-import LoginPage from "./pages/SignIn/LoginPage";
-import ReagisterPage from "./pages/SignIn/ReagisterPage";
+import Login from "./pages/SignIn/LoginPage";
+import Register from "./pages/SignIn/RegisterPage";
+import { useState } from "react";
+
 const App = () => {
+    const [isAuth, setAuth] = useState<boolean>(false);
+    const [isAdmin, setAdmin] = useState<boolean>(false);
+    let token:any = localStorage.getItem("TOKEN_USER");
+
+    if (token && token !== null) {
+        const role = JSON.parse(atob(token.split(".")[1]));
+        if (role) {
+            let getRole: string = role?.["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
+            console.log(typeof getRole);
+            // window.location.reload();
+            if (getRole && isAuth === false) {
+                setAuth(true);
+                console.log("Wykryłem rol", getRole);
+                if (getRole === "Admin") {
+                    setAdmin(true);
+                }
+            }
+        }
+    } else {
+        if (isAuth !== false) {
+            console.log("Ustawiam false");
+            setAuth(false);
+        }
+    }
+
     const router = createBrowserRouter(
         createRoutesFromElements(
             <Route path="/" element={<AppLayout />}>
-                <Route path="/" element={<SignInLayout />}>
-                    <Route index element={<LoginPage />} />
-                    <Route path="Register" element={<ReagisterPage />} />
-                </Route>
-                <Route path="Admin" element={<AdminLayout />}>
-                    <Route index element={<DashboardAdmin />} />
-                    <Route path="Actors" element={<h1>Actors</h1>} />
-                    <Route path="Cinemas" element={<h1>Cinemas</h1>} />
-                    <Route path="Movies" element={<h1>Movies</h1>} />
-                    <Route path="Producers" element={<h1>Producers</h1>} />
-                </Route>
-                <Route path="User" element={<UserLayout />}>
-                    <Route index element={<DashboardUser />} />
-                    <Route path="Actors" element={<h1>Actors</h1>} />
-                    <Route path="Movies" element={<h1>Movies</h1>} />
-                </Route>
+                {isAuth ? (
+                    isAdmin ? (
+                        <Route path="/" element={<AdminLayout />}>
+                            <Route index element={<DashboardAdmin />} />
+                            <Route path="Actors" element={<h1>Actors</h1>} />
+                            <Route path="Cinemas" element={<h1>Cinemas</h1>} />
+                            <Route path="Movies" element={<h1>Movies</h1>} />
+                            <Route path="Producers" element={<h1>Producers</h1>} />{" "}
+                        </Route>
+                    ) : (
+                        <Route path="/" element={<UserLayout />}>
+                            <Route index element={<DashboardUser />} />
+                            <Route path="Actors" element={<h1>Actors</h1>} />
+                            <Route path="Movies" element={<h1>Movies</h1>} />
+                        </Route>
+                    )
+                ) : (
+                    <Route path="/" element={<SignInLayout />}>
+                        <Route index element={<Login />} />
+                        <Route path="Register" element={<Register />} />
+                    </Route>
+                )}
                 <Route path="*" element={<NotFound />} />
             </Route>
         )

@@ -1,16 +1,20 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { login } from "../../services/Api";
-interface LoginFormValues {
+import { createAccount } from "../../services/Api";
+interface RegisterFormValues {
+    fullName: string;
     emailAddress: string;
     password: string;
+    confirmPassword: string;
 }
 
-const LoginPage = () => {
+const RegisterPage = () => {
     const navigate = useNavigate();
-    const [formValues, setFormValues] = useState<LoginFormValues>({
-        emailAddress: "admin@gmail.com",
-        password: "Admin@1234!",
+    const [formValues, setFormValues] = useState<RegisterFormValues>({
+        fullName: "",
+        emailAddress: "",
+        password: "",
+        confirmPassword: "",
     });
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -35,11 +39,11 @@ const LoginPage = () => {
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         console.log(formValues);
-        const { emailAddress, password } = formValues;
-        login(emailAddress, password, onSuccess, onError);
-        // setFormValues({ email: "", password: "" });
-    };
+        setFormValues({ fullName: "", emailAddress: "", password: "", confirmPassword: "" });
+        const { fullName, emailAddress, password, confirmPassword } = formValues;
 
+        createAccount(fullName, emailAddress, password, confirmPassword, onSuccess, onError);
+    };
     return (
         <div className="signPage">
             <div className="signPage__left">
@@ -48,21 +52,35 @@ const LoginPage = () => {
             <div className="signPage__right">
                 <div className="right__container">
                     <div className="container__header">
-                        <h2>Witamy na eBilety,</h2>
-                        <h2>Zaloguj się aby kontynuować</h2>
+                        <h2>Stwórz konto</h2>
                     </div>
                     <div className="container__header">
-                        <h4>Nie poiadasz konta</h4>
+                        <h4>Jesli posiadasz konto</h4>
                         <button
                             className="header__button"
                             onClick={() => {
-                                navigate("/Register");
+                                navigate("/");
                             }}
                         >
-                            <u>Stwórz</u>
+                            <u>Zaloguj</u>
                         </button>
                     </div>
                     <form className="container__form" onSubmit={handleSubmit}>
+                        <div className="form__containerInput">
+                            <label className="containerInput__label" htmlFor="fullName">
+                                Imię i Nazwisko:
+                            </label>
+                            <input
+                                className="containerInput__input"
+                                type="fullName"
+                                id="fullName"
+                                name="fullName"
+                                placeholder="Imię i Nazwisko"
+                                value={formValues.fullName}
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
                         <div className="form__containerInput">
                             <label className="containerInput__label" htmlFor="emailAddress">
                                 Email:
@@ -93,8 +111,23 @@ const LoginPage = () => {
                                 required
                             />
                         </div>
+                        <div className="form__containerInput">
+                            <label className="containerInput__label" htmlFor="confirmPassword">
+                                Password:
+                            </label>
+                            <input
+                                className="containerInput__input"
+                                type="confirmPassword"
+                                id="confirmPassword"
+                                name="confirmPassword"
+                                placeholder="Powtórz hasło"
+                                value={formValues.confirmPassword}
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
                         <button className="form__button" type="submit">
-                            Login
+                            Rejestruj
                         </button>
                     </form>
                 </div>
@@ -103,4 +136,4 @@ const LoginPage = () => {
     );
 };
 
-export default LoginPage;
+export default RegisterPage;

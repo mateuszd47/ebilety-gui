@@ -1,8 +1,8 @@
 import { Outlet } from "react-router-dom";
 
-const AdminLayout: React.FC = () => {
+const AdminLayout = () => {
     return (
-        <div className="app">
+        <div className="layout">
             <Outlet />
         </div>
     );

@@ -1,34 +1,28 @@
-// import React from "react";
 import $ from "jquery";
 
-interface CreateAccount {
-    fullName: string;
-    email: string;
-    password: string;
-    confirmPassword: string;
-}
+const URL: string = "https://localhost:7180";
 
-interface LoginAccount {
-    email: string;
-    password: string;
-}
-
-const URL: string = "localhost:";
-
-const createAccount = (
-    email: string,
+export const createAccount = (
+    fullName: string,
+    emailAddress: string,
     password: string,
+    confirmPassword: string,
     onSuccess: (data: any) => void,
     onError: (error: any) => void
 ) => {
     const url = `${URL}/api/Account/Register`;
 
-    let data = JSON.stringify({ email: email, password: password });
+    let data: string = JSON.stringify({
+        fullName: fullName,
+        emailAddress: emailAddress,
+        password: password,
+        confirmPassword: confirmPassword,
+    });
 
     callApi(url, data, onSuccess, onError);
 };
 
-const login = (
+export const login = (
     email: string,
     password: string,
     onSuccess: (data: any) => void,
@@ -36,40 +30,34 @@ const login = (
 ) => {
     const url = `${URL}/api/Account/Login`;
 
-    let data = JSON.stringify({ email: email, password: password });
+    let data: string = JSON.stringify({ emailAddress: email, password: password });
 
     callApi(url, data, onSuccess, onError);
 };
 
 const callApi = (
     url: string,
-    data: string,
+    data: any,
     onSuccess: (data: any) => void,
     onError: (error: any) => void,
-    headers?: any,
     method: string = "POST"
 ) => {
     $.ajax({
         url: url,
         method: method,
-        contentType: "application/json",
-        dataType: "json",
-        headers: headers,
+        timeout: 0,
+        headers: {
+            "Content-Type": "application/json",
+        },
         data: data,
         success: (data) => {
-            onSuccess(data);
+            onSuccess({ data });
         },
         error: (data) => {
             if (onError) {
                 onError(data);
             }
-            console.log(data.message);
+            console.log(data);
         },
     });
-};
-
-export default {
-    createAccount,
-    login,
-    // findOrders,
 };

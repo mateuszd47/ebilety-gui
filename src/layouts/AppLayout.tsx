@@ -1,7 +1,11 @@
 import { Outlet } from "react-router-dom";
 
-const AppLayout: React.FC = () => {
-    return <Outlet />;
+const AppLayout = () => {
+    return (
+        <div className="app">
+            <Outlet />
+        </div>
+    );
 };
 
 export default AppLayout;

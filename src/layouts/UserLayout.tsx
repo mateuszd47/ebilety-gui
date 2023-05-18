@@ -1,7 +1,11 @@
 import { Outlet } from "react-router-dom";
 
-const UserLayout: React.FC = () => {
-    return <Outlet />;
+const UserLayout = () => {
+    return (
+        <div className="layout">
+            <Outlet />
+        </div>
+    );
 };
 
 export default UserLayout;
