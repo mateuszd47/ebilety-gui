@@ -1,6 +1,6 @@
-import {Outlet} from "react-router-dom";
+import { Outlet } from "react-router-dom";
 
-const AppLayout = () => {
+const AppLayout: React.FC = () => {
     return <Outlet />;
 };
 

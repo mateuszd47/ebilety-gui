@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-const SignInLayout = () => {
+const SignInLayout: React.FC = () => {
     return <Outlet />;
 };
 

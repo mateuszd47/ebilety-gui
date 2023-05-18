@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 
-const UserLayout = () => {
+const UserLayout: React.FC = () => {
     return <Outlet />;
 };
 
