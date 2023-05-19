@@ -25,10 +25,9 @@ const RegisterPage = () => {
         }));
     };
 
-    const onSuccess = ({ data }: { data: any }) => {
-        localStorage.setItem("TOKEN_USER", data);
-        console.log("Token", data);
-        window.location.reload();
+    const onSuccess = () => {
+        
+        navigate("/");
     };
 
     const onError = ({ data }: { data: any }) => {
@@ -39,9 +38,7 @@ const RegisterPage = () => {
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         console.log(formValues);
-        setFormValues({ fullName: "", emailAddress: "", password: "", confirmPassword: "" });
         const { fullName, emailAddress, password, confirmPassword } = formValues;
-
         createAccount(fullName, emailAddress, password, confirmPassword, onSuccess, onError);
     };
     return (
@@ -87,7 +84,7 @@ const RegisterPage = () => {
                             </label>
                             <input
                                 className="containerInput__input"
-                                type="emailAddress"
+                                type="email"
                                 id="emailAddress"
                                 name="emailAddress"
                                 placeholder="Email"
@@ -98,7 +95,7 @@ const RegisterPage = () => {
                         </div>
                         <div className="form__containerInput">
                             <label className="containerInput__label" htmlFor="password">
-                                Password:
+                                Hasło:
                             </label>
                             <input
                                 className="containerInput__input"
@@ -113,11 +110,11 @@ const RegisterPage = () => {
                         </div>
                         <div className="form__containerInput">
                             <label className="containerInput__label" htmlFor="confirmPassword">
-                                Password:
+                                Powtórz hasło:
                             </label>
                             <input
                                 className="containerInput__input"
-                                type="confirmPassword"
+                                type="password"
                                 id="confirmPassword"
                                 name="confirmPassword"
                                 placeholder="Powtórz hasło"

@@ -1,26 +1,27 @@
-import {
-    createBrowserRouter,
-    createRoutesFromElements,
-    RouterProvider,
-    Route,
-} from "react-router-dom";
+import { createBrowserRouter, createRoutesFromElements, RouterProvider, Route } from "react-router-dom";
 import atob from "atob";
+import { useState } from "react";
 
 import AppLayout from "./layouts/AppLayout";
 import SignInLayout from "./layouts/SignInLayout";
 import AdminLayout from "./layouts/AdminLayout";
 import UserLayout from "./layouts/UserLayout";
-import DashboardUser from "./pages/User/DashboardUser";
 import NotFound from "./pages/NotFound";
 import DashboardAdmin from "./pages/Admin/DashboardAdmin";
 import Login from "./pages/SignIn/LoginPage";
 import Register from "./pages/SignIn/RegisterPage";
-import { useState } from "react";
+
+import UserLayoutPages from "./layouts/UserLayoutPages";
+import DashboardUser from "./pages/User/DashboardUser";
+import MovieGet from "./pages/User/Movie/MovieGet";
+import MovieList from "./pages/User/Movie/MovieList";
+import ActorGet from "./pages/User/Admin/ActorGet";
+import ActorList from "./pages/User/Admin/ActorList";
 
 const App = () => {
     const [isAuth, setAuth] = useState<boolean>(false);
     const [isAdmin, setAdmin] = useState<boolean>(false);
-    let token:any = localStorage.getItem("TOKEN_USER");
+    let token: any = localStorage.getItem("TOKEN_USER");
 
     if (token && token !== null) {
         const role = JSON.parse(atob(token.split(".")[1]));
@@ -58,8 +59,14 @@ const App = () => {
                     ) : (
                         <Route path="/" element={<UserLayout />}>
                             <Route index element={<DashboardUser />} />
-                            <Route path="Actors" element={<h1>Actors</h1>} />
-                            <Route path="Movies" element={<h1>Movies</h1>} />
+                            <Route path="Actors" element={<UserLayoutPages />}>
+                                <Route index element={<ActorList/>} />
+                                <Route path=":id" element={<ActorGet/>} />
+                            </Route>
+                            <Route path="Movies" element={<UserLayoutPages />}>
+                                <Route index element={<MovieList/>} />
+                                <Route path=":id" element={<MovieGet/>} />
+                            </Route>
                         </Route>
                     )
                 ) : (

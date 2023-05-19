@@ -9,8 +9,8 @@ interface LoginFormValues {
 const LoginPage = () => {
     const navigate = useNavigate();
     const [formValues, setFormValues] = useState<LoginFormValues>({
-        emailAddress: "admin@gmail.com",
-        password: "Admin@1234!",
+        emailAddress: "",
+        password: "",
     });
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -37,7 +37,6 @@ const LoginPage = () => {
         console.log(formValues);
         const { emailAddress, password } = formValues;
         login(emailAddress, password, onSuccess, onError);
-        // setFormValues({ email: "", password: "" });
     };
 
     return (
@@ -69,7 +68,7 @@ const LoginPage = () => {
                             </label>
                             <input
                                 className="containerInput__input"
-                                type="emailAddress"
+                                type="email"
                                 id="emailAddress"
                                 name="emailAddress"
                                 placeholder="Email"
@@ -80,7 +79,7 @@ const LoginPage = () => {
                         </div>
                         <div className="form__containerInput">
                             <label className="containerInput__label" htmlFor="password">
-                                Password:
+                                Hasło:
                             </label>
                             <input
                                 className="containerInput__input"
