@@ -15,8 +15,12 @@ import UserLayoutPages from "./layouts/UserLayoutPages";
 import DashboardUser from "./pages/User/DashboardUser";
 import MovieGet from "./pages/User/Movie/MovieGet";
 import MovieList from "./pages/User/Movie/MovieList";
-import ActorGet from "./pages/User/Admin/ActorGet";
-import ActorList from "./pages/User/Admin/ActorList";
+import ActorGet from "./pages/User/Actor/ActorGet";
+import ActorList from "./pages/User/Actor/ActorList";
+
+import AdminLayoutPages from "./layouts/AdminLayoutPages";
+import ActorListA from "./pages/Admin/Actor/ActorList";
+
 
 const App = () => {
     const [isAuth, setAuth] = useState<boolean>(false);
@@ -51,21 +55,47 @@ const App = () => {
                     isAdmin ? (
                         <Route path="/" element={<AdminLayout />}>
                             <Route index element={<DashboardAdmin />} />
-                            <Route path="Actors" element={<h1>Actors</h1>} />
-                            <Route path="Cinemas" element={<h1>Cinemas</h1>} />
-                            <Route path="Movies" element={<h1>Movies</h1>} />
-                            <Route path="Producers" element={<h1>Producers</h1>} />{" "}
+                            <Route path="Actors" element={<AdminLayoutPages />}>
+                                <Route index element={<ActorListA />} />
+                                <Route path=":id" element={<h1>Admin</h1>} />
+                                <Route path="new" element={<h1>Admin</h1>} />
+                                <Route path="Edit" element={<h1>Admin</h1>} />
+                            </Route>
+                            <Route path="Cinemas" element={<AdminLayoutPages />}>
+                                <Route index element={<h1>Admin</h1>} />
+                                <Route path=":id" element={<h1>Admin</h1>} />
+                                <Route path="new" element={<h1>Admin</h1>} />
+                                <Route path="Edit" element={<h1>Admin</h1>} />
+                            </Route>
+                            <Route path="Movies" element={<AdminLayoutPages />}>
+                                <Route index element={<h1>Admin</h1>} />
+                                <Route path=":id" element={<h1>Admin</h1>} />
+                                <Route path="new" element={<h1>Admin</h1>} />
+                                <Route path="Edit" element={<h1>Admin</h1>} />
+                            </Route>
+                            <Route path="Producers" element={<AdminLayoutPages />}>
+                                <Route index element={<h1>Admin</h1>} />
+                                <Route path=":id" element={<h1>Admin</h1>} />
+                                <Route path="new" element={<h1>Admin</h1>} />
+                                <Route path="Edit" element={<h1>Admin</h1>} />
+                            </Route>
+                            <Route path="Orders" element={<AdminLayoutPages />}>
+                                <Route index element={<h1>Admin</h1>} />
+                                <Route path=":id" element={<h1>Admin</h1>} />
+                                <Route path="new" element={<h1>Admin</h1>} />
+                                <Route path="Edit" element={<h1>Admin</h1>} />
+                            </Route>
                         </Route>
                     ) : (
                         <Route path="/" element={<UserLayout />}>
                             <Route index element={<DashboardUser />} />
                             <Route path="Actors" element={<UserLayoutPages />}>
-                                <Route index element={<ActorList/>} />
-                                <Route path=":id" element={<ActorGet/>} />
+                                <Route index element={<ActorList />} />
+                                <Route path=":id" element={<ActorGet />} />
                             </Route>
                             <Route path="Movies" element={<UserLayoutPages />}>
-                                <Route index element={<MovieList/>} />
-                                <Route path=":id" element={<MovieGet/>} />
+                                <Route index element={<MovieList />} />
+                                <Route path=":id" element={<MovieGet />} />
                             </Route>
                         </Route>
                     )
