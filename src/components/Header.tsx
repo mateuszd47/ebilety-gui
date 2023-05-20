@@ -27,7 +27,14 @@ const Header = () => {
                     <span className="account__cart">
                         <FontAwesomeIcon icon={faCartShopping} />
                     </span>
-                    <span className="account__profile">profile</span>
+                    <span
+                        className="account__profile"
+                        onClick={() => {
+                            localStorage.clear();
+                        }}
+                    >
+                        profile
+                    </span>
                 </div>
             </div>
         </header>

@@ -21,7 +21,7 @@ const CustomSelect: React.FC = () => {
     // ];
     const [isOpen, setIsOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState<Option | null>(null);
-    const [options, setOptions] = useState<[]>([]);
+    const [options, setOptions] = useState<any[]>([]);
 
     const onSuccess = ({ data }: { data: any }) => {
         console.log("SUCCESS:", data);

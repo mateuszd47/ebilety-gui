@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 
 const ActorList = () => {
     const [isLoading, setLoading] = useState<boolean>(false);
-    const [actors, setActors] = useState<[]>([]);
+    const [actors, setActors] = useState<any[]>([]);
     const onSuccess = ({ data }: { data: any }) => {
         setActors(data);
         console.log(data);

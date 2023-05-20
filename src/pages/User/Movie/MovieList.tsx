@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 
 const MovieList = () => {
     const [isLoading, setLoading] = useState<boolean>(false);
-    const [movies, setMovies] = useState<[]>([]);
+    const [movies, setMovies] = useState<any[]>([]);
     const onSuccess = ({ data }: { data: any }) => {
         setMovies(data);
         console.log(data);

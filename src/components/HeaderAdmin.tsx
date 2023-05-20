@@ -32,7 +32,7 @@ const HeaderAdmin = () => {
             </div>
             <div className="header__container">
                 <div className="container__account">
-                    <span className="account__profile">profile</span>
+                    <span className="account__profile" onClick={()=> {localStorage.clear();}}>profile</span>
                 </div>
             </div>
         </header>

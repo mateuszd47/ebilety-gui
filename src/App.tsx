@@ -20,7 +20,10 @@ import ActorList from "./pages/User/Actor/ActorList";
 
 import AdminLayoutPages from "./layouts/AdminLayoutPages";
 import ActorListA from "./pages/Admin/Actor/ActorList";
-
+import MovieListA from "./pages/Admin/Movie/MovieList";
+import CinemaList from "./pages/Admin/Cinema/CinemaList";
+import ProducerList from "./pages/Admin/Producer/ProducerList";
+import OrderList from "./pages/Admin/Order/OrderList";
 
 const App = () => {
     const [isAuth, setAuth] = useState<boolean>(false);
@@ -62,25 +65,25 @@ const App = () => {
                                 <Route path="Edit" element={<h1>Admin</h1>} />
                             </Route>
                             <Route path="Cinemas" element={<AdminLayoutPages />}>
-                                <Route index element={<h1>Admin</h1>} />
+                                <Route index element={<CinemaList />} />
                                 <Route path=":id" element={<h1>Admin</h1>} />
                                 <Route path="new" element={<h1>Admin</h1>} />
                                 <Route path="Edit" element={<h1>Admin</h1>} />
                             </Route>
                             <Route path="Movies" element={<AdminLayoutPages />}>
-                                <Route index element={<h1>Admin</h1>} />
+                                <Route index element={<MovieListA />} />
                                 <Route path=":id" element={<h1>Admin</h1>} />
                                 <Route path="new" element={<h1>Admin</h1>} />
                                 <Route path="Edit" element={<h1>Admin</h1>} />
                             </Route>
                             <Route path="Producers" element={<AdminLayoutPages />}>
-                                <Route index element={<h1>Admin</h1>} />
+                                <Route index element={<ProducerList />} />
                                 <Route path=":id" element={<h1>Admin</h1>} />
                                 <Route path="new" element={<h1>Admin</h1>} />
                                 <Route path="Edit" element={<h1>Admin</h1>} />
                             </Route>
                             <Route path="Orders" element={<AdminLayoutPages />}>
-                                <Route index element={<h1>Admin</h1>} />
+                                <Route index element={<OrderList/>} />
                                 <Route path=":id" element={<h1>Admin</h1>} />
                                 <Route path="new" element={<h1>Admin</h1>} />
                                 <Route path="Edit" element={<h1>Admin</h1>} />
