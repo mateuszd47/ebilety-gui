@@ -43,7 +43,7 @@ export const getActors = (onSuccess: (data: any) => void, onError: (error: any) 
     callApi(url, null, onSuccess, onError, "GET");
 };
 
-export const getActorsID = (id: number, onSuccess: (data: any) => void, onError: (error: any) => void) => {
+export const getActorsID = (id: string, onSuccess: (data: any) => void, onError: (error: any) => void) => {
     const url = `${URL}/api/Actors/${id}`;
 
     callApi(url, null, onSuccess, onError, "GET");
@@ -63,7 +63,7 @@ export const postActors = (
 };
 
 export const putActors = (
-    id: number,
+    id: string,
     profilePictureURL: string,
     fullName: string,
     bio: string,
@@ -76,7 +76,7 @@ export const putActors = (
     callApi(url, data, onSuccess, onError, "PUT");
 };
 
-export const delActors = (id: number, onSuccess: (data: any) => void, onError: (error: any) => void) => {
+export const delActors = (id: string, onSuccess: (data: any) => void, onError: (error: any) => void) => {
     const url = `${URL}/api/Actors/${id}`;
 
     callApi(url, null, onSuccess, onError, "DELETE");
@@ -90,7 +90,7 @@ export const getCinemas = (onSuccess: (data: any) => void, onError: (error: any)
     callApi(url, null, onSuccess, onError, "GET");
 };
 
-export const getCinemasID = (id: number, onSuccess: (data: any) => void, onError: (error: any) => void) => {
+export const getCinemasID = (id: string, onSuccess: (data: any) => void, onError: (error: any) => void) => {
     const url = `${URL}/api/Cinemas/${id}`;
 
     callApi(url, null, onSuccess, onError, "GET");
@@ -110,7 +110,7 @@ export const postCinemas = (
 };
 
 export const putCinemas = (
-    id: number,
+    id: string,
     logo: string,
     name: string,
     description: string,
@@ -123,7 +123,7 @@ export const putCinemas = (
     callApi(url, data, onSuccess, onError, "PUT");
 };
 
-export const delCinemas = (id: number, onSuccess: (data: any) => void, onError: (error: any) => void) => {
+export const delCinemas = (id: string, onSuccess: (data: any) => void, onError: (error: any) => void) => {
     const url = `${URL}/api/Cinemas/${id}`;
 
     callApi(url, null, onSuccess, onError, "DELETE");
@@ -137,7 +137,7 @@ export const getMovies = (onSuccess: (data: any) => void, onError: (error: any) 
     callApi(url, null, onSuccess, onError, "GET");
 };
 
-export const getMoviesID = (id: number, onSuccess: (data: any) => void, onError: (error: any) => void) => {
+export const getMoviesID = (id: string, onSuccess: (data: any) => void, onError: (error: any) => void) => {
     const url = `${URL}/api/Movies/${id}`;
 
     callApi(url, null, onSuccess, onError, "GET");
@@ -152,14 +152,14 @@ export const postMovies = (
     endDate: string,
     movieCategory: number,
     actorsMovies: any,
-    cinemaId: number,
+    cinemaId: string,
     // cinema: {
     //     id: 3;
     //     logo: "https://www.helios.pl/img/logo.helios_ua.png";
     //     name: "Helios";
     //     description: "Kino Konesera; Kino Kobiet; Maratony filmowe; Helios dla dzieci; Kultura Dostępna; Helios na scenie; Grupy. Oferta dla firm; Helios dla szkoły; Akademia Filmowa; Kino na Temat; Kino na Temat Jr; Kino.";
     // },
-    producerId: number,
+    producerId: string,
     producer: any,
     onSuccess: (data: any) => void,
     onError: (error: any) => void
@@ -189,7 +189,7 @@ export const postMovies = (
 };
 
 export const putMovies = (
-    id: number,
+    id: string,
     name: string,
     description: string,
     price: number,
@@ -198,14 +198,14 @@ export const putMovies = (
     endDate: string,
     movieCategory: number,
     actorsMovies: any,
-    cinemaId: number,
+    cinemaId: string,
     // cinema: {
     //     id: 3;
     //     logo: "https://www.helios.pl/img/logo.helios_ua.png";
     //     name: "Helios";
     //     description: "Kino Konesera; Kino Kobiet; Maratony filmowe; Helios dla dzieci; Kultura Dostępna; Helios na scenie; Grupy. Oferta dla firm; Helios dla szkoły; Akademia Filmowa; Kino na Temat; Kino na Temat Jr; Kino.";
     // },
-    producerId: number,
+    producerId: string,
     producer: any,
     onSuccess: (data: any) => void,
     onError: (error: any) => void
@@ -234,7 +234,7 @@ export const putMovies = (
     callApi(url, data, onSuccess, onError, "PUT");
 };
 
-export const delMovies = (id: number, onSuccess: (data: any) => void, onError: (error: any) => void) => {
+export const delMovies = (id: string, onSuccess: (data: any) => void, onError: (error: any) => void) => {
     const url = `${URL}/api/Movies/${id}`;
 
     callApi(url, null, onSuccess, onError, "DELETE");
@@ -283,7 +283,7 @@ export const getProducers = (onSuccess: (data: any) => void, onError: (error: an
     callApi(url, null, onSuccess, onError, "GET");
 };
 
-export const getProducersID = (id: number, onSuccess: (data: any) => void, onError: (error: any) => void) => {
+export const getProducersID = (id: string, onSuccess: (data: any) => void, onError: (error: any) => void) => {
     const url = `${URL}/api/Producers/${id}`;
 
     callApi(url, null, onSuccess, onError, "GET");
@@ -307,7 +307,7 @@ export const postProducers = (
 };
 
 export const putProducers = (
-    id: number,
+    id: string,
     avatar: string,
     fullName: string,
     bio: string,
@@ -324,7 +324,7 @@ export const putProducers = (
     callApi(url, data, onSuccess, onError, "PUT");
 };
 
-export const delProducers = (id: number, onSuccess: (data: any) => void, onError: (error: any) => void) => {
+export const delProducers = (id: string, onSuccess: (data: any) => void, onError: (error: any) => void) => {
     const url = `${URL}/api/Producers/${id}`;
 
     callApi(url, null, onSuccess, onError, "DELETE");
@@ -339,7 +339,7 @@ export const getShoppingCart = (onSuccess: (data: any) => void, onError: (error:
 };
 
 export const postShoppingCart = (
-    movieId: number,
+    movieId: string,
     amount: number,
     onSuccess: (data: any) => void,
     onError: (error: any) => void
@@ -354,8 +354,8 @@ export const postShoppingCart = (
 };
 
 export const putShoppingCart = (
-    id: number,
-    movieId: number,
+    id: string,
+    movieId: string,
     amount: number,
     onSuccess: (data: any) => void,
     onError: (error: any) => void
@@ -369,7 +369,7 @@ export const putShoppingCart = (
     callApi(url, data, onSuccess, onError, "PUT");
 };
 
-export const delShoppingCart = (id: number, onSuccess: (data: any) => void, onError: (error: any) => void) => {
+export const delShoppingCart = (id: string, onSuccess: (data: any) => void, onError: (error: any) => void) => {
     const url = `${URL}/api/ShoppingCart/${id}`;
 
     callApi(url, null, onSuccess, onError, "DELETE");

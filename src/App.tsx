@@ -19,7 +19,12 @@ import ActorGet from "./pages/User/Actor/ActorGet";
 import ActorList from "./pages/User/Actor/ActorList";
 
 import AdminLayoutPages from "./layouts/AdminLayoutPages";
-import ActorListA from "./pages/Admin/Actor/ActorList";
+
+import ActorAList from "./pages/Admin/Actor/ActorAList";
+import ActorAGet from "./pages/Admin/Actor/ActorAGet";
+import ActorANew from "./pages/Admin/Actor/ActorANew";
+import ActorAEdit from "./pages/Admin/Actor/ActorAEdit";
+
 import MovieListA from "./pages/Admin/Movie/MovieList";
 import CinemaList from "./pages/Admin/Cinema/CinemaList";
 import ProducerList from "./pages/Admin/Producer/ProducerList";
@@ -59,10 +64,10 @@ const App = () => {
                         <Route path="/" element={<AdminLayout />}>
                             <Route index element={<DashboardAdmin />} />
                             <Route path="Actors" element={<AdminLayoutPages />}>
-                                <Route index element={<ActorListA />} />
-                                <Route path=":id" element={<h1>Admin</h1>} />
-                                <Route path="new" element={<h1>Admin</h1>} />
-                                <Route path="Edit" element={<h1>Admin</h1>} />
+                                <Route index element={<ActorAList />} />
+                                <Route path="Get/:id" element={<ActorAGet />} />
+                                <Route path="New" element={<ActorANew />} />
+                                <Route path="Edit/:id" element={<ActorAEdit />} />
                             </Route>
                             <Route path="Cinemas" element={<AdminLayoutPages />}>
                                 <Route index element={<CinemaList />} />
@@ -83,7 +88,7 @@ const App = () => {
                                 <Route path="Edit" element={<h1>Admin</h1>} />
                             </Route>
                             <Route path="Orders" element={<AdminLayoutPages />}>
-                                <Route index element={<OrderList/>} />
+                                <Route index element={<OrderList />} />
                                 <Route path=":id" element={<h1>Admin</h1>} />
                                 <Route path="new" element={<h1>Admin</h1>} />
                                 <Route path="Edit" element={<h1>Admin</h1>} />

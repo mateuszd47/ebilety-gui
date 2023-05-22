@@ -1,13 +1,30 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getMoviesID } from "../../../services/Api";
-
+interface Data {
+    id: string;
+    imageURL: string;
+    name: string;
+    price: number;
+    description: string;
+    producer: string;
+    
+    actorsMovies: []
+}
 const MovieGet = () => {
     let navigate = useNavigate();
     const { id } = useParams();
 
     const [isLoading, setLoading] = useState<boolean>(false);
-    const [movie, setMovie] = useState<{}>({});
+    const [movie, setMovie] = useState<Data>({
+        id: "",
+        imageURL: "",
+        name: "",
+        price: 0,
+        description: "",
+        producer: "",
+        actorsMovies: [],
+    });
 
     const onSuccess = ({ data }: { data: any }) => {
         console.log(data);
@@ -43,9 +60,12 @@ const MovieGet = () => {
                     <h2>{movie?.name}</h2>
                     <p>{movie?.description}</p>
                     <p>Reżyser: {movie?.producer?.fullName}</p>
-                    <div>Obsada: {movie?.actorsMovies?.map((item)=>(
-                        <div key={item?.actor?.id}>{item?.actor?.fullName}</div>
-                    ))}</div>
+                    <div>
+                        Obsada:{" "}
+                        {movie?.actorsMovies?.map((item) => (
+                            <div key={item?.actor?.id}>{item?.actor?.fullName}</div>
+                        ))}
+                    </div>
                     <div className="container__buttons">
                         <button className="button">{movie?.price} zł</button>
                     </div>

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { getActors } from "../../../services/Api";
 import { NavLink } from "react-router-dom";
 
-const ActorList = () => {
+const ActorAList = () => {
     const [isLoading, setLoading] = useState<boolean>(false);
     const [actors, setActors] = useState<any[]>([]);
     const onSuccess = ({ data }: { data: any }) => {
@@ -24,7 +24,7 @@ const ActorList = () => {
     return (
         <div className="container">
             <header className="container__header">
-                <NavLink className="button success" to={"/Actors/New"}>
+                <NavLink className="button success" to={"New"}>
                     Dodaj
                 </NavLink>
             </header>
@@ -42,10 +42,10 @@ const ActorList = () => {
                                 <h4 className="item__tittle">{actor.fullName}</h4>
                                 <div className="iteam__buttons">
                                     {/* <button className="button">{actor.price} zł</button> */}
-                                    <NavLink className="button" to={`/Actors/${actor.id}`}>
+                                    <NavLink className="button" to={`Get/${actor.id}`}>
                                         info
                                     </NavLink>
-                                    <NavLink className="button" to={"/Actors/Edit"}>
+                                    <NavLink className="button" to={`Edit/${actor.id}`}>
                                         Edytuj
                                     </NavLink>
                                     <button className="button danger">Delete</button>
@@ -58,4 +58,4 @@ const ActorList = () => {
     );
 };
 
-export default ActorList;
+export default ActorAList;

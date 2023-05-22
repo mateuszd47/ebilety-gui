@@ -1,15 +1,13 @@
-import  { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { getActorsID } from "../../../services/Api";
-
-
 interface Data {
     id: string;
     profilePictureURL: string;
     fullName: string;
     bio: string;
 }
-const ActorGet = () => {
+const ActorAGet = () => {
     let navigate = useNavigate();
     const { id } = useParams();
 
@@ -31,29 +29,36 @@ const ActorGet = () => {
         }
     }, [actor, isLoading, id]);
     return (
-        <div className="getItem">
-            <nav className="getItem__nav">
+        <div className="container__form">
+            <nav className="form__nav">
                 <button
-                    className="button"
+                    className="button nav"
                     onClick={() => {
                         navigate(-1);
                     }}
                 >
                     Cofnij
                 </button>
+                <NavLink to={`/Actors/Edit/${actor.id}`} className="button default">
+                    Edytuj
+                </NavLink>
             </nav>
-            <div className="getItem__container">
-                <div className="container__image">
-                    <figure className="image" style={{ backgroundImage: `url("${actor?.profilePictureURL}")` }}></figure>
+            <div className="get">
+                <div className="get__image">
+                    <figure
+                        className="image"
+                        style={{ backgroundImage: `url("${actor?.profilePictureURL}")` }}
+                    ></figure>
                 </div>
-                <div className="container__info">
+                <div className="get__headertext">
                     <h2>{actor?.fullName}</h2>
+                </div>
+                <div className="get__bio">
                     <p>{actor?.bio}</p>
-                    <div></div>
                 </div>
             </div>
         </div>
     );
 };
 
-export default ActorGet;
+export default ActorAGet;
