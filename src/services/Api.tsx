@@ -1,6 +1,6 @@
 import $ from "jquery";
 
-const URL: string = "https://localhost:7180";
+const URL: string = import.meta.env.VITE_SERVICE_URL || "https://localhost:7180";
 
 export const createAccount = (
     fullName: string,
