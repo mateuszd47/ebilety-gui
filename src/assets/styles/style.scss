@@ -170,6 +170,15 @@ a {
                                 }
                             }
                         }
+                        .form__dropdown {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            width: 100%;
+                            height: 20px;
+                            color: #e33b3b;
+                        }
+
                         .form__button {
                             margin: 20px 0 0 0;
                             background-color: $color13;
@@ -457,6 +466,53 @@ a {
                                 padding: 20px;
                                 width: 100%;
                                 height: 40px;
+                            }
+                        }
+                    }
+                }
+                .cart {
+                    width: 100%;
+                    height: 100%;
+                    .cart__container {
+                        padding: 10px;
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        border-radius: 10px;
+                        justify-content: space-between;
+                        width: 100%;
+                        height: 100px;
+                        background-color: $color-secondary;
+                        .container__order {
+                            display: flex;
+                            flex-direction: row;
+                            align-items: center;
+                            justify-content: space-between;
+                            width: 70%;
+                            height: 100%;
+                            gap: 10px;
+                            .order__image {
+                                height: 100%;
+                                max-width: 300px;
+                                aspect-ratio: 3 / 4;
+                                .image {
+                                    width: 100%;
+                                    height: 100%;
+                                    background-size: cover;
+                                    background-position: center;
+                                }
+                            }
+                            .order__ammount {
+                                display: flex;
+                            flex-direction: row;
+                            align-items: center;
+                                width: 35px;
+                                height: 100%;
+                                input{
+                                    padding: 5px;
+                                    width: 35px;
+                                    height: 30px;
+                                }
                             }
                         }
                     }
@@ -817,11 +873,11 @@ a {
                             }
                         }
                         .get__headertext {
-                            padding:  5px 0;
+                            padding: 5px 0;
                             width: 100%;
                         }
                         .get__bio {
-                            padding:  5px 0;
+                            padding: 5px 0;
                             width: 100%;
                         }
                     }
