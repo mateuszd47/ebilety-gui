@@ -1,17 +1,23 @@
-FROM node:18.6
+FROM node:18.6 AS builder
 
-WORKDIR /ebilety-gui
+WORKDIR /app
 
-COPY . ./
+COPY . .
+
+ENV VITE_SERVICE_URL="http://localhost:8080"
 
 RUN npm install
 
-ENV NODE_ENV=development
+RUN npm run build
 
-ENV PORT=5173
+FROM nginx:1.16.0-alpine
 
-ENV FORCE_COLOR=1
+COPY --from=builder /app/dist /usr/share/nginx/html
 
-EXPOSE 5173
+RUN rm /etc/nginx/conf.d/default.conf
 
-CMD ["npm", "run", "dev"]
+COPY deploy/nginx/nginx.conf /etc/nginx/conf.d
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
