@@ -34,6 +34,12 @@ const Cart = () => {
 
     const onSuccess = ({ data }: { data: any }) => {
         console.log(data);
+        postCompleteOrder(onSuccessOrder, onError);
+    };
+
+    const onSuccessOrder = ({ data }: { data: any }) => {
+        console.log(data);
+        navigate("/");
     };
 
     const onError = ({ data }: { data: any }) => {
@@ -45,7 +51,6 @@ const Cart = () => {
         console.log(cart);
         const { movieId, amount } = cart;
         postShoppingCart(movieId, amount, onSuccess, onError);
-        postCompleteOrder(onSuccess, onError);
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
